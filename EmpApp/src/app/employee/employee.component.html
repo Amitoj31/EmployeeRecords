@@ -1,0 +1,70 @@
+<form [formGroup]="EmployeeForm">
+    <mat-form-field appearance="outline">
+        <mat-label for="name">Name</mat-label>
+        <input matInput placeholder="Enter Employee Name" type="text" formControlName="name">
+        <div *ngIf="name.invalid && name.touched" class="errors">
+            <div *ngIf="name.errors?.['required']">
+                Name is required
+            </div>
+        </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label for="email">Email</mat-label>
+        <input matInput placeholder="Enter Employee Email" type="text" formControlName="email">
+        <div *ngIf="email.invalid && email.touched" class="errors">
+            <div *ngIf="email.errors?.['required']">
+                email is required
+            </div>
+            <div *ngIf="email.errors?.['pattern']">
+                email is wrong
+            </div>
+        </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label for="dob">Date of Birth</mat-label>
+        <input matInput placeholder="Enter Employee's DOB" type="date" formControlName="dob">
+        <div *ngIf="dob.invalid && dob.touched" class="errors">
+            <div *ngIf="dob.errors?.['required']">
+                Date of Birth is required
+            </div>
+        </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label for="salary">Salary</mat-label>
+        <input matInput placeholder="Enter Salary of the Employee" type="number" formControlName="salary" min="0"
+            step="0.01">
+        <div *ngIf="salary.invalid && salary.touched" class="errors">
+            <div *ngIf="salary.errors?.['required']">
+                Salary is required
+            </div>
+        </div>
+    </mat-form-field>
+
+
+    <div>
+        <mat-label>Status(Active/Inactive)</mat-label>
+        <mat-label class="md-check">
+            <input type="radio" value="true" name="status" formControlName="status">
+            Active
+        </mat-label>
+
+        <mat-label class="md-check">
+            <input type="radio" value="false" name="status" formControlName="status">
+            Inactive
+        </mat-label>
+    </div>
+
+
+    <div *ngIf="status.invalid && status.touched" class="errors">
+        <div *ngIf="status.errors?.['required']">
+            Salary is required
+        </div>
+    </div>
+
+    <button mat-raised-button *ngIf="!this.employeeService.updateStatus" (click)="addRecord()">Add</button>
+    <button *ngIf="this.employeeService.updateStatus" mat-raised-button (click)="updateRecord()">Update</button>
+
+</form>

@@ -1,0 +1,6 @@
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+    padding:30px;
+}
+mat-card {
+    text-align: center;
+}
